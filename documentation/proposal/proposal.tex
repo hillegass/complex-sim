@@ -8,51 +8,72 @@
 
 \begin{document}
 	\begin{center}
-    
-    	% MAKE SURE YOU TAKE OUT THE SQUARE BRACKETS
+		
+		% MAKE SURE YOU TAKE OUT THE SQUARE BRACKETS
 		\LARGE{\textbf{CSE 6730, Group 37 Proposal}} \\
-        \vspace{1em}
-        \Large{Project 2: Complex Simulation} \\
-     
+		\vspace{1em}
+		\Large{Project 2: Complex Simulation} \\
+		
 	\end{center}
-    \begin{normalsize}
-    
-    	\section{Project Title}
-        
-Simulation of Predator-Prey Population Dynamics
-      
+	\begin{normalsize}
+		
+		\section{Project Title}
+		
+		Simulation of Predator-Prey Population Dynamics
+		
 		\section{Team Members}
-        
-      \begin{enumerate}
-      	\item D. Aaron Hillegass (GTID 901988533)
-      	\item Siawpeng Er (GTID 903413430)
-      	\item Xiaotong Mu (GTID 903529807)
-      \end{enumerate}
-        
-	\section{Problem Description and Purpose}
-        
+		
+		\begin{enumerate}
+			\item D. Aaron Hillegass (GTID 901988533)
+			\item Siawpeng Er (GTID 903413430)
+			\item Xiaotong Mu (GTID 903529807)
+		\end{enumerate}
+		
+		\section{Problem Description and Purpose}
+		Predator and prey complex system is important ecological system. 
+		
+		- it is also have some extension, such as military response
+		
+		Complex systems has contributed to the understanding of the ecology
+		
+		\section{Data Source}
+		-pending
+		
+		\section{Methodology}
+		Our simulation will first simulate predators and preys entering and exiting a predefined area. Both prey and predators are affecting each other. In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others. 
+		
+		Traditionally, there is non linear Lotka Volterra Model of the predator-prey dynamic system \cite{inproceedings, 1102729}. LVM approach is a simplified model and suitable for detailed stability analysis. However, it is also very limited model and lack of flexibility for complex interaction. Hence, we also hope to incorporate Agent Based Model \cite{Hodzic} in this project to increase the completeness of our analysis. 
+		
+		In our project, some of the simulation situation that we wish to investigate including:
+		\begin{enumerate}
+			\item Long term population among preys and predators.
+			\item Introduction of the uncertainties: eg disease.
+			\item Introduction of the third parties interaction: eg human activity, natural disasters etc.
+		\end{enumerate}
+		
+		\section{Development Platform}
+		The programming language is Python 3. We shall provide a Jupyter notebook for user interaction.
+		In the Jupyter notebook, we shall allow the user to change some of the probability and the simulation parameters to see different result of the simulation.
+		
+		\section{Division of Labor}
+		As we move forward on our project, we plan to work concurrently. The timeline is as below:
+		
+		\begin{center}
+			\begin{tabular}{ |c|c|c| } 
+				\hline
+				Task & Duration  \\ 
+				\hline
+				Data collection & 2 weeks \\ 
+				Modeling design and implementaion & 4 weeks \\ 
+				Modeling revised & 4 weeks \\ 
+				\hline
+			\end{tabular}
+		\end{center}
+		
 
-   	\section{Methodology}
- 
-    \section{Division of Labor}
-    As we move forward on our project, we plan to work concurrently. The timeline is as below:
-       
-    \begin{center}
-    	\begin{tabular}{ |c|c|c| } 
-    		\hline
-    		Task & Duration  \\ 
-    		\hline
-    		Data collection & 2 weeks \\ 
-    		Modeling design and implementaion & 4 weeks \\ 
-    		Modeling revised & 4 weeks \\ 
-    		\hline
-    	\end{tabular}
-    \end{center}
-    
-    
-    
-    \bibliographystyle{plain}
-    \bibliography{reference}
-\end{normalsize}
-  
+		
+		\bibliographystyle{plain}
+		\bibliography{reference}
+	\end{normalsize}
+	
 \end{document}
