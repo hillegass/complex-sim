@@ -30,14 +30,17 @@
 		\end{enumerate}
 		
 		\section{Problem Description and Purpose}
-		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. One of the mathematical models that simulates predator and prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain autocatalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. The basics of the Lotka-Volterra model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response.
+		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. Both prey and predators are affecting each other. In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others.  \\
 		
+		Predator prey releationship is important for us to understand the impact of the relationship on the ecological system in one area. Such relationship is always complicated. Without predators, prey (normally herbivors) will cause detrimental impact on the plants in that area. However, overkill by the predators may also impact the balance of the nature. Besides, there are effects from human intervention on such relationship (eg: hunting and destroy of the habitat). Furthermore, predator-prey model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response \cite{derrik}.\\
+		
+		One of the mathematical models that simulates predator and prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain autocatalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. We hope to use this intuitive model in our complex system simulation,  so that we could gain more understanding on the relationship, as well as the impact of our activities on such relationship.
 		
 		\section{Data Source}
-		-pending
-		
+		For this project, we plan to obtain some data from the National Park. However, it is also possible from literature review we could obtained some of the data source used by the their simulation and use it as our data source.
+	
 		\section{Methodology}
-		Our simulation will first simulate predators and prey entering and exiting a predefined area. Both prey and predators are affecting each other. In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others. 
+		Our simulation will first simulate predators and prey entering and exiting a predefined area. Then through interactions, their population may affecting each others.
 		
 		Traditionally, there is the nonlinear Lotka-Volterra Model of the predator-prey dynamic system \cite{inproceedings, 1102729}. LVM approach is a simplified model and suitable for detailed stability analysis. However, it is also very limited model and lack of flexibility for complex interaction. Hence, we also hope to incorporate the Agent-Based Model \cite{Hodzic} in this project to increase the completeness of our analysis. 
 		
