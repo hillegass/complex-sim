@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[margin=0.75in]{geometry}
+
+\setlength{\parskip}{0.7em}
+\setlength{\parindent}{0em}
+
+\begin{document}
+	\begin{center}
+		
+		% MAKE SURE YOU TAKE OUT THE SQUARE BRACKETS
+		\LARGE{\textbf{CSE 6730, Checkpoint}} \\
+		\vspace{1em}
+		\Large{Project 2: Complex Simulation} \\
+		
+	\end{center}
+	\begin{normalsize}
+		
+		\section{Project Title}
+		
+		Simulation of Predator-Prey Population Dynamics (Lotka-Volterra and Agent Based Simulation)
+		
+		\section{Team Members}
+		
+		\begin{enumerate}
+			\item D. Aaron Hillegass (GTID 901988533)
+			\item Siawpeng Er (GTID 903413430)
+			\item Xiaotong Mu (GTID 903529807)
+		\end{enumerate}
+		
+		\section{Problem Description and Purpose}
+		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. Both prey and predators are affecting each other. In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others.  \\
+		
+		Predator prey releationship is important for us to understand the impact of the relationship on the ecological system in one area. Such relationship is always complicated. Without predators, prey (normally herbivors) will cause detrimental impact on the plants in that area. However, overkill by the predators may also impact the balance of the nature. Besides, there are effects from human intervention on such relationship (eg: hunting and destroy of the habitat). Furthermore, predator-prey model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response \cite{derrik}.\\
+		
+		One of the mathematical models that simulates predator and prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain autocatalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. We hope to use this intuitive model in our complex system simulation,  so that we could gain more understanding on the relationship, as well as the impact of our activities on such relationship.
+		
+		\section{Literature Review}
+		Simple predator and prey interaction could be model using Lotka-Volterra model. In our model, we borrow idea from \cite{Sayama2013} to build firstly our simple interaction model. Firstly, our rabbit model is following the  
+		\begin{equation}
+		R_t = R_{t-1} + growth_{R} \times \big( \frac{capacity_{R} - R_{t-1}}{capacity_{R}} \big) R_{t-1}
+		\end{equation}
+		For the coyote,
+		\begin{equation}
+		\begin{aligned}
+		C_t  & \sim (1 - death_{C}) \times C_{t-1} \\
+		&= C_{t-1} - death_{C} \times C_{t-1}
+		\end{aligned}
+		\end{equation}
+		
+		With the simple interaction from the first two parts, now we can combine both interaction and come out with simple interaction between the two species.
+		\begin{equation}
+		R_t = R_{t-1} + growth_{R} \times \big( \frac{capacity_{R} - R_{t-1}}{capacity_{R}} \big) R_{t-1} - death_{R}(C_{t-1})\times R_{t-1}
+		\end{equation}
+		
+		\begin{equation}
+		C_t = C_{t-1} - death_{C} \times C_{t-1} + growth_{C}(R_{t-1}) \times C_{t-1}
+		\end{equation}
+		
+		In equations above, death rate of rabbit is a function parameterized by the amount of coyote. Similarly, the growth rate of coyotes is a function parameterized by the amount of the rabbit. The death rate of the rabbit should be $0$ if there are no coyotes, while it should approach $1$ if there are many coyotes. One of the formula fulfilling this characteristics is hyperbolic function.
+	
+		\begin{equation}
+		death_R(C) = 1 - \frac{1}{xC + 1}
+		\end{equation}
+	
+		where $x$ determines how quickly $death_R$ increases as the number of coyotes ($C$) increases. Similarly, the growth rate of the coyotes should be $0$ if there are no rabbits, while it should approach infinity if there are many rabbits. One of the formula fulfilling this characteristics is a linear function.
+	
+		\begin{equation}
+		growth_C(R) = yC
+		\end{equation}
+	
+		
+		where $y$ determines how quickly $growth_C$ increases as number of rabbit ($R$) increases.
+		
+		Putting all together, the final equtions are
+		
+		
+		\begin{equation}
+		R_t = R_{t-1} + growth_{R} \times \big( \frac{capacity_{R} - R_{t-1}}{capacity_{R}} \big) R_{t-1} - \big( 1 - \frac{1}{xC_{t-1} + 1} \big)\times R_{t-1}
+		\end{equation}
+		\begin{equation}
+		C_t = C_{t-1} - death_{C} \times C_{t-1} + yR_{t-1}C_{t-1}
+		\end{equation}
+			
+		
+		\section{Data Source}
+		For this project, we do some simple simulation between rabbit and coyote. We obtained the idea from the Wikipedia for rabbits and coyotes growth and reduction rate.
+	
+		\section{Methodology}
+		Our simulation will first simulate predators and prey entering and exiting a predefined area. Then through interactions, their population may affecting each others.
+		
+		Traditionally, there is the nonlinear Lotka-Volterra Model of the predator-prey dynamic system \cite{inproceedings, 1102729}. LVM approach is a simplified model and suitable for detailed stability analysis. However, it is also very limited model and lack of flexibility for complex interaction. Hence, we also hope to incorporate the Agent-Based Model \cite{Hodzic} in this project to increase the completeness of our analysis. We gained most of insight of writing our simulation based on \cite{Sayama2013}.
+		
+		In our project, some of the ideas that we wish to investigate include:
+		\begin{enumerate}
+			\item Long-term population interaction among predators and prey.
+			\item Introduction of the uncertainties like diseases.
+			\item Introduction of the third parties interaction: human activity, natural disasters etc.
+		\end{enumerate}
+		
+		\section{Development Platform}
+		The programming language is Python 3. We will provide a Jupyter notebook for user interaction.
+		In the Jupyter notebook, we will allow the user to change some of the probability and the simulation parameters to see different result of the simulation.
+		
+		\subsection{Current Development}
+		Currently, we have successfully model the world, rabbits and coyotes. Since this is a step by step tutorial based project, we first create the simulation with only the rabbits growth rate, and coyotes death rate. Finally, we allow some interaction between rabbits and coyotes. This is the first phase of our Lotka-Volterra Model.
+		
+		In the program, simply run python notebook for the current main.ipynb. The tutorial should be self contained. Some of the current parameters that could be play with is as per table below
+		
+	\begin{center}
+		\begin{tabular}{ |c|c|} 
+			\hline
+			Parameter & Description  \\ 
+			\hline
+			\multicolumn{2}{|c|}{Single Rabbit Model} \\
+			\hline
+			Initial population & Initial rabbit population \\ 
+			Capacity & Capacity of the environment\\ 
+			Growth rate & 4 How fast rabbit could grow \\ 
+			\hline
+			\multicolumn{2}{|c|}{Single Coyote Model} \\
+			\hline
+			Initial population & Initial coyote population \\ 
+			Death rate & 4 How fast coyote could decrease \\ 
+			\hline
+			\multicolumn{2}{|c|}{Coyote Rabbit Interaction Model} \\
+			\hline
+			Initial population & Initial rabbit population \\ 
+			Capacity & Capacity of the environment\\ 
+			Growth rate & 4 How fast rabbit could grow \\ 
+			Initial population & Initial coyote population \\ 
+			Death rate & 4 How fast coyote could decrease \\ 
+			x & How fast rabbit decrease due to the coyote population \\
+			y & How fast coyote increase due to the rabbit population \\
+			\hline
+		\end{tabular}
+	\end{center}
+		
+		Next, we shall continue with the Agent Based Model for the same relationship to improve our current model so that more interesting and complicated information could be add in.
+		
+		\section{Division of Labor}
+		As we move forward on our project, we plan to work concurrently. The timeline is as below:
+		
+		\begin{center}
+			\begin{tabular}{ |c|c|c| } 
+				\hline
+				Task & Duration  \\ 
+				\hline
+				Literature review & 2 weeks \\ 
+				Modeling design and implementaion & 4 weeks \\ 
+				Modeling revised & 4 weeks \\ 
+				\hline
+			\end{tabular}
+		\end{center}
+		Currently, the works done as per below.
+		\begin{center}
+			\begin{tabular}{ |c|c|c| } 
+				\hline
+				Task & Member  \\ 
+				\hline
+				Literature review & All members\\			
+				Single rabbit model & D. Aaron Hillegass\\ 
+				Single predator model & Xiaotong Mu\\
+				Allow UI interaction, predator prey interaction & Siawpeng Er\\
+				\hline
+			\end{tabular}
+		\end{center}
+
+		
+		\bibliographystyle{plain}
+		\bibliography{reference}
+	\end{normalsize}
+	
+\end{document}

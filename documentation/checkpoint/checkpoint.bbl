@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{derrik}
+Derrik~E. Asher, Erin~G. Zaroukian, and Sean~L. Barton.
+\newblock Adapting the predator-prey game theoretic environment to army
+  tactical edge scenarios with computational multiagent systems.
+\newblock {\em CoRR}, abs/1807.05806, 2018.
+
+\bibitem{Hodzic}
+Migdat Hodzic, Suvad Selma, and Mirsad Hadzikadic.
+\newblock Complex ecological system modeling.
+\newblock {\em Periodical of Engineering and Natural Sciences}, 4(1), 2016.
+
+\bibitem{inproceedings}
+Migdat Hodzic, Suvad Selma, Mirsad Hadzikadic, and Ted Carmichael.
+\newblock Dual approach to complex ecological dynamic system modeling and
+  control.
+\newblock 03 2015.
+
+\bibitem{1102729}
+V.~{Lakshmikantham}.
+\newblock Large-scale dynamic systems: Stability and structure [book reviews].
+\newblock {\em IEEE Transactions on Automatic Control}, 26(4):976--977, August
+  1981.
+
+\bibitem{Sayama2013}
+Hiroki Sayama.
+\newblock Pycx: a python-based simulation code repository for complex systems
+  education.
+\newblock {\em Complex Adaptive Systems Modeling}, 1(1):2, 2013.
+
+\end{thebibliography}
