@@ -31,12 +31,24 @@
 		\end{enumerate}
 		
 		\section{Problem Description and Purpose}
-		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. Both prey and predators are affecting each other. In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others.  \\
+		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. Both prey and predators are affecting each other. \cite{laham_2012_a}In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others.\cite{obaid_2013_the}\
 		
-		Predator prey releationship is important for us to understand the impact of the relationship on the ecological system in one area. Such relationship is always complicated. Without predators, prey (normally herbivors) will cause detrimental impact on the plants in that area. However, overkill by the predators may also impact the balance of the nature. Besides, there are effects from human intervention on such relationship (eg: hunting and destroy of the habitat). Furthermore, predator-prey model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response \cite{derrik}.\\
+		Predator prey relationship is important for us to understand the impact of the relationship on the ecological system in one area. Such relationship is always complicated. Without predators, prey (normally herbivores) will cause detrimental impact on the plants in that area. However, overkill by the predators may also impact the balance of the nature. Besides, there are effects from human intervention on such relationship (eg: hunting and destroy of the habitat). Furthermore, predator-prey model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response \cite{derrik}.\\
 		
-		One of the mathematical models that simulates predator and prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain autocatalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. We hope to use this intuitive model in our complex system simulation,  so that we could gain more understanding on the relationship, as well as the impact of our activities on such relationship.
-		
+		One of the mathematical models that simulates predator and prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain auto-catalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. We hope to use this intuitive model in our complex system simulation, so that we could gain more understanding on the relationship, as well as the impact of our activities on such relationship. Furthermore, we would like to investigate the equilibria and stability of our ecological system, and to facilitate in understanding the general behavior of the system by finding the equilibrium solutions of a coupled set of nonlinear ordinary differential equations.\cite{tung_2007_topics}\cite{a2018_alfred}
+		\section{General Assumptions}
+		Important refinements such as environmental heterogeneities, more complex food web networks, and different functional responses will be selectively added to future models in iterative process. The following assumptions are made with current model:
+		\begin{itemize}
+		    \item The environment is assumed homogeneous with no natural disasters or  variations in temperature
+		    \item All species are of the same size, produce the same amount of resources when consume%, and share the same set of simple strategic rules
+		    \item No limited lifetime for preys and predators
+		    \item Each prey or predator has a fixed probability of reproducing at each time step.
+		    \item Unlimited food available to the prey is assumes, and so the prey(and predator)growth rates are limited by corresponding capacity and growth coefficients
+		    \item Each predator eats a constant proportion of the prey population per year; In other words, doubling the prey population will double the number eaten per predator, regardless of how big the prey population is.
+		    \item Predator reproduction is directly proportional to prey consumed; another way of expressing this is that a certain number of prey consumed results in one new predator; or that one prey consumed produces some fraction of a new predator.
+		    \item A constant proportion of the predator population dies per year. In other words, the predator death rate is independent of the amount of food available.
+		\end{itemize}
+
 		\section{Literature Review}
 		Simple predator and prey interaction could be model using Lotka-Volterra model. In our model, we borrow idea from \cite{Sayama2013} to build firstly our simple interaction model. Firstly, our rabbit model is following the  
 		\begin{equation}
@@ -68,7 +80,7 @@
 		where $x$ determines how quickly $death_R$ increases as the number of coyotes ($C$) increases. Similarly, the growth rate of the coyotes should be $0$ if there are no rabbits, while it should approach infinity if there are many rabbits. One of the formula fulfilling this characteristics is a linear function.
 	
 		\begin{equation}
-		growth_C(R) = yC
+		growth_C(R) = yR
 		\end{equation}
 	
 		
@@ -83,8 +95,51 @@
 		\begin{equation}
 		C_t = C_{t-1} - death_{C} \times C_{t-1} + yR_{t-1}C_{t-1}
 		\end{equation}
-			
+% 		To investigate the equilibria and stability of the system, we will be using the Lotka-Volterra set of equations with Holling's Type II functional response, the model can be described by
+%         \begin{equation}	
+% 		\frac{dx}{dt} = ax-bxy
+% 		\frac{dy}{dt} = dbx \times y - cy
+% 		\end{equation}
 		
+		The previous relationship could be extended to multiple predators and preys relationship. In the multiple predators and preys model, we will be focusing on a specific 2+2 model with two preys: rabbits and deers ,and two predators: coyotes and wolfs. We assume that each predator preys on each prey but not on each other. And the preys population capacity are affecting each other:
+		\begin{equation}
+		    capacity_{D} = capacity_{prey} - capacity_{R}
+		\end{equation}
+		What difference from the simple predator and prey interaction is that, now the death rate of preys is a function parameterized by both the amount of coyotes and the amount of wolfs. 
+		\begin{equation}
+		    death_R(C,W) = (1 - \frac{1}{xC + 1}) + (1 - \frac{1}{vW + 1})\\
+		\end{equation}
+		\begin{equation}
+		    death_D(C,W) = (1 - \frac{1}{xC + 1}) + (1 - \frac{1}{vW + 1})\\
+		\end{equation}
+		
+		where v determines how quickly $death_{R}$ increases as the number of wolfs (W) increases. 
+		Similarly, the growth rate of predators is a function parameterized by the amount of both rabbits and deer.  Where u determines how quickly $growth_W$ increases as number of rabbit (R) increases, and $D_{t}$ represents the number of deer at time t.\\
+		
+		\begin{equation}
+		growth_C(R) = yR+uD
+		\end{equation}
+		\begin{equation}
+		growth_W(R) = yR+uD
+		\end{equation}
+		
+		Multiple Prey Multiple Predator model is described in the following equations:
+		
+		\begin{equation}
+		R_t = R_{t-1} + growth_{R} \times (\frac{capacity_R - R_{t-1}}{capacity_R})R_{t-1} - (1 - \frac{1}{xC_{t-1} + 1} ) \times R_{t-1}- (1 - \frac{1}{vW_{t-1} + 1})\times R_{t-1}
+		\end{equation}
+		\begin{equation}
+		D_t = D_{t-1} + growth_{D} \times (\frac{capacity_D - D_{t-1}}{capacity_D})D_{t-1} - (1 - \frac{1}{xC_{t-1} + 1} )\times D_{t-1}- (1 - \frac{1}{vW_{t-1} + 1})\times D_{t-1}
+		\end{equation}
+
+		
+		
+		\begin{equation}
+		    C_{t} = C_{t-1} - death_C \times C_{t-1} + yR_{t-1}C_{t-1} + u D_{t-1}C_{t-1}
+		\end{equation}
+		\begin{equation}
+		    W_{t} = W_{t-1} - death_W \times W_{t-1} + yR_{t-1}W_{t-1} + u D_{t-1}W_{t-1}
+		\end{equation}
 		\section{Data Source}
 		For this project, we do some simple simulation between rabbit and coyote. We obtained the idea from the Wikipedia for rabbits and coyotes growth and reduction rate.
 	
@@ -118,22 +173,34 @@
 			\hline
 			Initial population & Initial rabbit population \\ 
 			Capacity & Capacity of the environment\\ 
-			Growth rate & 4 How fast rabbit could grow \\ 
+			Growth rate & How fast rabbit could grow \\ 
 			\hline
 			\multicolumn{2}{|c|}{Single Coyote Model} \\
 			\hline
 			Initial population & Initial coyote population \\ 
-			Death rate & 4 How fast coyote could decrease \\ 
+			Death rate & How fast coyote could decrease \\ 
 			\hline
 			\multicolumn{2}{|c|}{Coyote Rabbit Interaction Model} \\
 			\hline
-			Initial population & Initial rabbit population \\ 
+			Initial population & Initial rabbit population  \\ 
 			Capacity & Capacity of the environment\\ 
-			Growth rate & 4 How fast rabbit could grow \\ 
+			Growth rate & How fast rabbit could grow \\ 
 			Initial population & Initial coyote population \\ 
-			Death rate & 4 How fast coyote could decrease \\ 
+			Death rate & How fast coyote could decrease \\ 
 			x & How fast rabbit decrease due to the coyote population \\
 			y & How fast coyote increase due to the rabbit population \\
+			\hline
+			\multicolumn{2}{|c|}{Multiple Preys and Predators Model} \\
+			\hline
+			Initial prey population & Initial rabbit and deer population \\ 
+			Capacity & Capacity of the environment and capacity of rabbit\\ 
+			Growth rate of each prey & How fast rabbit and deer could grow \\ 
+			Initial predator population & Initial coyote and wolf population \\ 
+			Death rate of each predator & How fast coyote and wolf could decrease \\ 
+			Death rate ratio due to coyote & How fast rabbit and deer decrease due to the coyote population \\
+			Death rate ratio due to wolf & How fast rabbit and deer decrease due to the wolf population \\			
+			Growth rate ratio due to rabbit & How fast coyote and wolf increase due to the rabbit population\\
+			Growth rate ratio due to deer & How fast coyote and wolf increase due to the deer population\\
 			\hline
 		\end{tabular}
 	\end{center}
