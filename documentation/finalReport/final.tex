@@ -190,10 +190,10 @@
 			\hline
 			\multicolumn{2}{|c|}{Coyote Rabbit Interaction Model} \\
 			\hline
-			Initial population & Initial rabbit population  \\ 
+			Initial rabbit population & Initial rabbit population  \\ 
 			Capacity & Capacity of the environment\\ 
 			Growth rate & How fast rabbit could grow \\ 
-			Initial population & Initial coyote population \\ 
+			Initial coyote population & Initial coyote population \\ 
 			Death rate & How fast coyote could decrease \\ 
 			x & How fast rabbit decrease due to the coyote population \\
 			y & How fast coyote increase due to the rabbit population \\
@@ -216,6 +216,21 @@
 		\subsection{Agent Based Simulation}
 		
 		We improve our model to Agent Based Model for the same relationship. We have one gui interaction model, and another static model populate the outcome of interaction.
+		
+			\begin{center}
+			\begin{tabular}{ |c|c|} 
+				\hline
+				Parameter & Description  \\ 
+				\hline
+				Initial rabbit count & Initial rabbit population  \\ 
+				Rabbit capacity & Capacity of the environment\\ 
+				Rabbitreproduction & How fast rabbit could grow \\ 
+				Initial coyote count & Initial coyote population \\ 
+				Coyote death rate & How fast coyote could decrease \\ 
+				Coyote birth rate  & How fast coyote could increase \\ 
+				\hline
+			\end{tabular}
+		\end{center}
 		
 		\section{Tutorial}
 		The tutorial is divided into two portion. One is the basic Lotka-Volterra Model. Another is the Agent Based Simulation Model. Both the tutorials are run on Jupyter Notebook.
@@ -300,7 +315,68 @@
 		\caption{Interaction between multiple predators (wolves and coyotes) and preys (rabbits and deers)}
 	\end{figure}
 
-\subsection{Agent Based Interaction}
+\subsection{Agent Based Simulation / Agent Based Model}
+We used GUI framework available from Sayama.et al \cite{Sayama2013} to develop our model.
+\subsubsection{Introduction to the Agent Based Simulation model framework}
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/abs1}}
+	\caption{Introduction to ABS framework}
+\end{figure}
+\subsubsection{Start of GUI}
+At Jupyter Notebook, when running the simulation, we will have a working GUI. The red spot is the predator (coyote), while the black spot is the rabbit (preys).
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/ABS_Start}}
+	\caption{Start of ABS Simulation}
+\end{figure}
+
+\newpage
+\subsubsection{Continuous run of simulation}
+Pressing run will enable the simulation to occurs, presssing pause will hold the simulation. The begining of the predators and preys are randomly initialized.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, height=27 em, frame]{Figures/ABS_run}}
+	\caption{Running of ABS Simulation}
+\end{figure}
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth,height=27 em, frame]{Figures/ABS_run_pause}}
+	\caption{Pause of ABS Simulation}
+	\end{figure}
+
+\newpage
+\subsubsection{Stepping of simulation}
+Users can also choose to step through the simulation. We show randomly two screen shots after different steps for the simulation.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, height=27 em,frame]{Figures/ABS_step}}
+	\caption{Stepping of Simulation 1}
+\end{figure}
+
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth,height=27 em, frame]{Figures/ABS_25step}}
+	\caption{Stepping of Simulation 2}
+\end{figure}
+
+\newpage
+\subsubsection{Parameters setup}
+Users are allowed to control the initial rabbit population, coyote population, rabbit capacity, rabbit reproduction, coyote death rate and birth rate in the Parameters tab.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, height=25 em, frame]{Figures/ABS_Parameters}}
+	\caption{Parameters setup}
+\end{figure}
+
+\subsubsection{Simulation settings}
+Users are allows to change some of the simulation settings, such as step side and how fast the visualization delay.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth,  height=25 em,frame]{Figures/ABS_settings}}
+	\caption{Simulation settings}
+\end{figure}
+
+\subsubsection{Information}
+Finally, some additional information.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth,height=25 em, frame]{Figures/Info}}
+	\caption{Additional Information}
+\end{figure}
+
+
 		\section{Division of Labor}
 		As we move forward on our project, we plan to work concurrently. The timeline is as below:
 		
