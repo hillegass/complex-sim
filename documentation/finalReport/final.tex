@@ -168,6 +168,21 @@
 		In the Jupyter notebook, we will allow the user to change some of the probability and the simulation parameters to see different result of the simulation.
 		
 		\subsection{Lotka-Volterra Model}
+		The Lotka-Volterra Model is a classic model of predator-prey interactions. It is based on a pair of first order non-linear differential equations. Volterra first proposed simple model for the predation of one species by another to explain the oscillatory levels of a certain population. In the continuous time model, if x(t) is the prey population and y(t) is the predator population at time t, the Volterra's model is:
+		$$\frac{dx}{dt} = ax-bxy$$
+		$$\frac{dy}{dt} = cxy - dy$$
+		where a, b, c and d are all positive constants.\\
+		The exponential growth for prey is represented by the term ax, and the prey population is simultaneously destroyed by predators, and the rate of predation upon the prey is assumed to be proportional to the rate at which the predators and prey meet,that is represented by bxy. Also, we can tell by looking at the equation $\frac{dx}{dt}$, if either x or y is equal to zero, then there is no predation. In $\frac{dy}{dt}$, the cxy is the prey's contribution to predators growth rate, and it is assumed to be proportional to the size of available prey as well as the population of predator, the xy can be thought of as the conversion of energy from the food source. -dy is the exponential decay in predator population due to lack of food. The equations above demonstrates a simple explanations of how prey and predator population fluctuate. 
+		Furthermore, If the number of prey becomes sufficiently great, then the prey may be interfering with each other in their quest for food and space. One way to describe this effect mathematically is to assume that the prey not grows indefinitely in the absence of predators, but will ultimately reach the carrying capacity of the environment. Hence prey doesn't grow exponentially but follow a logistic growth equation as below:
+		$$\frac{dx}{dt} = ax(1-\frac{x}{K})-bxy$$
+		$$\frac{dy}{dt} = y(cx-d)$$
+		where K is the saturation constant.\\
+		By applying forward Euler method to the set of ODEs above, we obtain the discrete time Lotka-Volterra Model.
+		$$x_{t} = x_{t-1}+ax_{t-1}(1-\frac{x_{t-1}}{K})-bx_{t-1}y_{t-1}$$
+		$$y_{t} = y_{t-1}+y_{t-1}(cx_{t-1} - d)$$		
+		In order to come up with mathematical form for b and c, we should consider the extreme cases.
+		If there is no predator, the death rate for prey should be zero, and it should approach one as predator population keep increasing. With the equations above, we can determine the equilibrium points of the system, and then investigate their stability. Equilibrium points can be determined by setting $x_{t}$ and $y_{t}$ equal to $x_{t-1}$ and $y_{t-1}$ respectively, then solving the the nonlinear equations. After we determined the existence of the equilibrium points of the Lotka–Volterra models, we could further investigate their stability by calculating the eigenvalues for the Jacobian matrix of the Lotka– Volterra models at each equilibrium point of them. To better illustrate the patterns we can fix the parameters with some initial values and generate the phase portrait of the system. By looking at the plot [Fig 11] we can observe that every trajectory in the first quadrant is a closed curve. Thus the predator and prey populations oscillate go in cycles.
+		
 		Currently, we have successfully model the world, rabbits and coyotes. Since this is a step by step tutorial based project, we first create the simulation with only the rabbits growth rate, and coyotes death rate. Finally, we allow some interaction between rabbits and coyotes. This is the first phase of our Lotka-Volterra Model.
 		
 		In the program, simply run python notebook for the current main.ipynb. The tutorial should be self contained. Some of the current parameters that could be play with is as per table below
@@ -214,6 +229,18 @@
 	\end{center}
 		
 		\subsection{Agent Based Simulation}
+		In population dynamics we generally analyze either how a single population changes over time, or how two populations interact and influence their population sizes over time. The role of decision making by individual spiecies is largely ignored in the simulation models of ecology, such as Lotka-Volterra model we mentioned previously. To better understand how modeling helps link individual behaviors to phenomena at the level of population interaction, we want to  introduce agent based modeling.
+		 Agent-based modeling brings understanding and clarity to complex natural interactions by allowing them to develop through the individuals. This individual development can provide added realism over other modeling approaches. In agent based model,
+		agents can be born and die during a simulation, and certain rules are defined for encounters between individuals. This means that the number of state variables involved in a system can change dynamically over time.
+		Agent rules:
+		\begin{itemize}
+		    \item For prey each individual agent reproduces at a certain reproduction rate
+		    \item If a prey agent meets a predator agent, it dies with some probability because of predation
+		    \item Predator agent  dies with certain probability if no prey nearby
+		    \item Predators can diffuse a little faster than prey
+		    \item To handle situations where the size of the agent population changes rapidly, we assume in each asynchronous updating,
+$\frac{1}{agent\ population}$ of a unit length of time passes by
+		\end{itemize}
 		
 		We improve our model to Agent Based Model for the same relationship. We have one gui interaction model, and another static model populate the outcome of interaction.
 		
