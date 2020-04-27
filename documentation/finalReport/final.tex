@@ -37,6 +37,7 @@
 		The final submission for checkpoint and final project will be at the Folder Submission with each subfolder.\\
 		For the ABS model, we create one model with interaction but it is conflicting with macbook pro touch bar for one of our member laptop and the laptop shut down everytime running. Running on other member laptops is completely fine. \\
 		We create one embedded version prior the GUI version as well. Embedded version suppor the step through function that allow user to look at each step.
+
 		
 		\section{Problem Description and Purpose}
 		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. Both prey and predators are affecting each other. \cite{laham_2012_a}In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others.\cite{obaid_2013_the}\
@@ -154,7 +155,7 @@
 		\section{Methodology}
 		Our simulation will first simulate predators and prey entering and exiting a predefined area. Then through interactions, their population may affecting each others.
 		
-		Traditionally, there is the nonlinear Lotka-Volterra Model of the predator-prey dynamic system \cite{inproceedings, 1102729}. LVM approach is a simplified model and suitable for detailed stability analysis. However, it is also very limited model and lack of flexibility for complex interaction. Hence, we also hope to incorporate the Agent-Based Model \cite{Hodzic} in this project to increase the completeness of our analysis. We gained most of insight of writing our simulation based on \cite{Sayama2013}.
+		Traditionally, there is the nonlinear Lotka-Volterra Model of the predator-prey dynamic system \cite{inproceedings, 1102729}. LVM approach is a simplified model and suitable for detailed stability analysis. However, it is also very limited model and lack of flexibility for complex interaction. Hence, we also hope to incorporate the Agent-Based Model \cite{Hodzic} in this project to increase the completeness of our analysis. We gained most of insight of writing our simulation based on \cite{Sayama2013}. We also include another way to do the simulation through cellular automata.
 		
 		In our project, some of the ideas that we wish to investigate include:
 		\begin{enumerate}
@@ -227,7 +228,26 @@
 			\hline
 		\end{tabular}
 	\end{center}
+
+	\subsection{Cellular Automata}
+		We have cellular Automata that include space constraint on the prey and predator relationship. The prey and predator is playing "hide and seek" where predator can only eat those within its neigbhorhood. We define the neighborhood as up, down, left and right location of the cell. That is, we follow the von Neumann neighborhoods.
+		Cellular rules:
 		
+		\begin{center}
+			\begin{tabular}{ |c|c|} 
+				\hline
+				Parameter & Description  \\ 
+				\hline
+				World size & The canvas size in nxn dimension  \\ 
+				Maximum predator & How many predator initialized\\ 
+				Prey reproductive probability & Probability of prey reproduce \\ 
+				Predator reproductive probability & Probability of predator reproduce with prey around \\ 
+				Predator dying probability & Probability of predator die if no prey around \\ 
+				Maximum step  & maximum step run for the cellular automata \\ 
+				\hline
+			\end{tabular}
+		\end{center}
+	
 		\subsection{Agent Based Simulation}
 		In population dynamics we generally analyze either how a single population changes over time, or how two populations interact and influence their population sizes over time. The role of decision making by individual spiecies is largely ignored in the simulation models of ecology, such as Lotka-Volterra model we mentioned previously. To better understand how modeling helps link individual behaviors to phenomena at the level of population interaction, we want to  introduce agent based modeling.
 		 Agent-based modeling brings understanding and clarity to complex natural interactions by allowing them to develop through the individuals. This individual development can provide added realism over other modeling approaches. In agent based model,
@@ -258,7 +278,7 @@ $\frac{1}{agent\ population}$ of a unit length of time passes by
 				\hline
 			\end{tabular}
 		\end{center}
-		
+	
 		\section{Tutorial}
 		The tutorial is divided into two portion. One is the basic Lotka-Volterra Model. Another is the Agent Based Simulation Model. Both the tutorials are run on Jupyter Notebook.
 		\subsection{Lotka-Volterra Model}
@@ -342,6 +362,72 @@ $\frac{1}{agent\ population}$ of a unit length of time passes by
 		\caption{Interaction between multiple predators (wolves and coyotes) and preys (rabbits and deers)}
 	\end{figure}
 
+\newpage
+\subsection{Cellular Automata}
+\subsubsection{Introduction to the world}
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c1}}
+	\caption{Introduction to Cellular Automata}
+\end{figure}
+Some information will be introduced:
+\begin{enumerate}
+	\item Possible states : EMPTY = 0; PREY = 1; PREDATOR = 2.
+	\item The world was created using 2D numpy array. 
+\end{enumerate}
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c3}}
+	\caption{Introduction to Cellular Automata World}
+\end{figure}
+\subsubsection{Utility functions}
+We requires users to create several functions: This to identify the empty space, prey and predator in the world.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c4}}
+	\caption{Some utility functions}
+\end{figure}
+\subsubsection{Get\_neighbor functions}
+Get neighbor function is important since cellular automata has space relationship among preys and predators. Predators can only eat preys within thier neigborhood. Both prey and predators can only move to their neighborhood.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c5}}
+	\caption{Get neighbor functions}
+\end{figure}
+
+\subsubsection{Predator movement functions}
+Once we have the get\_neighbor function, we could write the movement function. We start with movement of predators. We list the assumptions.
+\begin{enumerate}
+	\item If any of the neighbor is prey, predator will randomly move to that location and eat the prey, or has offspring occupy that space according to reproductive probability.
+	\item If the location is empty, it will move to that location randomly.
+	\item Without food, it may die according to the dying probability.
+\end{enumerate}
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c6}}
+	\caption{Predator movement function}
+\end{figure}
+
+\subsubsection{Prey movement functions}
+Similarly, we need to write the prey movement. The condition is much easier, if there is any empty space, prey could move to the location, or they can have their offspring there according to the reproductive probability.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c8}}
+	\caption{Prey movement function}
+\end{figure}
+
+\subsubsection{Step functions}
+We provide step function for each step of the simulation. 
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c9}}
+	\caption{Step function}
+\end{figure}
+
+\subsubsection{Putting alltogether}
+Finally, we put all the functions written together. 
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c11}}
+	\caption{Putting all functions together}
+\end{figure}
+We also provide a interactive user input and button for users to try different value.
+\begin{figure}[H]
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/c12}}
+	\caption{Users interaction}
+\end{figure}
 \newpage
 \subsection{Agent Based Simulation / Agent Based Model}
 \subsubsection{Introduction to the Agent Based Simulation model framework}
@@ -436,6 +522,7 @@ Finally, some additional information.
 				Single predator model, trajectories and direction field & Xiaotong Mu\\
 				UI interaction, predator prey interaction (single and multiple) & Siawpeng Er\\
 				Agent Based Simulation & All members\\
+				Cellular Automata & All members\\
 				Final Report & All members \\
 				\hline
 			\end{tabular}
