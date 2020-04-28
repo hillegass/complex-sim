@@ -1,0 +1,3 @@
+1. run jupyter notebook for each.ipynb 
+2. For ABS GUI, we need pcyxsimulator.py from Sayama et.al. The embedded version doesn't require such setup.
+2. run each cell from top to bottom
