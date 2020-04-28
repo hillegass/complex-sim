@@ -1,3 +1,4 @@
-1. run jupyter notebook for each.ipynb 
-2. For ABS GUI, we need pcyxsimulator.py from Sayama et.al. The embedded version doesn't require such setup.
-2. run each cell from top to bottom
+1. The tutorial is self contained. But we suggest to do it from Part1-Lotka-Volterra-Model.ipynb, Part2-Cellular Automata.ipynb and Part3-Agent-Based-Simulation.ipynb.
+2. run jupyter notebook for each.ipynb 
+3. For ABS GUI, we need pcyxsimulator.py from Sayama et.al. The embedded version doesn't require such setup.
+4. run each cell from top to bottom
