@@ -35,16 +35,16 @@
 		\section{Github}
 		Currently, the github is at https://github.gatech.edu/ser8/complex-sys.
 		The final submission for checkpoint and final project will be at the Folder Submission with each subfolder.\\
-		For the ABS model, we create one model with interaction but it is conflicting with macbook pro touch bar for one of our member laptop and the laptop shut down everytime running. Running on other member laptops is completely fine. \\
+		For the ABS model, we create one model with interaction but it is conflicting with macbook pro touch bar for one of our member laptop and the laptop shut down every time the code was executed. Running on other member laptops is completely fine. \\
 		We create one embedded version prior the GUI version as well. Embedded version suppor the step through function that allow user to look at each step.
 
 		
 		\section{Problem Description and Purpose}
 		The predator and prey relationship is an important ecological system. Their populations rise and fall over time as they interact and impact one another. These interactions are the prime movers of energy through food chains. Both prey and predators are affecting each other. \cite{laham_2012_a}In simplest interaction, predators depend on the prey as the food source. However, any abuse of the food source may result in decease in population of the prey, and subsequently decrease the number of the predators due to lack of food. Because of such interaction, the population of the predators and the prey may oscillate, and inversely proportional to each others.\cite{obaid_2013_the}\
 		
-		Predator prey relationship is important for us to understand the impact of the relationship on the ecological system in one area. Such relationship is always complicated. Without predators, prey (normally herbivores) will cause detrimental impact on the plants in that area. However, overkill by the predators may also impact the balance of the nature. Besides, there are effects from human intervention on such relationship (eg: hunting and destroy of the habitat). Furthermore, predator-prey model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response \cite{derrik}.\\
+		The predator-prey relationship is important for us to understand the impact of the relationship on the ecological system in one area. Such relationships are always complicated. Without predators, prey (normally herbivores) will cause detrimental impact on the plants in that area. However, overkill by the predators may also impact the balance of the nature. Besides, there are effects from human intervention on such relationship (eg: hunting and destroy of the habitat). Furthermore, predator-prey model can be used to describe many fundamental characteristics of ecological systems and can even be extended to other ideas like military response \cite{derrik}.\\
 		
-		One of the mathematical models that simulates predator and prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain auto-catalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. We hope to use this intuitive model in our complex system simulation, so that we could gain more understanding on the relationship, as well as the impact of our activities on such relationship. Furthermore, we would like to investigate the equilibria and stability of our ecological system, and to facilitate in understanding the general behavior of the system by finding the equilibrium solutions of a coupled set of nonlinear ordinary differential equations.\cite{tung_2007_topics}\cite{a2018_alfred}
+		One of the mathematical models that simulates predator-prey interactions is the Lotka-Volterra model proposed by Alfred Lotka and Vito Volterra. Lotka helped develop the logistic equation to explain auto-catalytic chemical reactions. Volterra interconnected the logistic equation to two separate populations in competition to explain predator and prey relationships. We hope to use this intuitive model in our complex system simulation, so that we could gain understanding of these relationships, as well as the impact of our activities on them. Furthermore, we would like to investigate the equilibria and stability of our ecological system, and to facilitate in understanding the general behavior of the system by finding the equilibrium solutions of a coupled set of nonlinear ordinary differential equations.\cite{tung_2007_topics}\cite{a2018_alfred}
 		\section{General Assumptions}
 		Important refinements such as environmental heterogeneities, more complex food web networks, and different functional responses will be selectively added to future models in iterative process. The following assumptions are made with current model:
 		\begin{itemize}
@@ -278,6 +278,18 @@ $\frac{1}{agent\ population}$ of a unit length of time passes by
 				\hline
 			\end{tabular}
 		\end{center}
+		
+		\subsection{Event-Based Simulation}
+		
+		We covered event-based simulations in the first half of the course. We modeled the predator-prey this way as well.  The result runs slowly and takes up a lot of memory, but it enables us to model some of the more subtle effects:
+		\begin{itemize}
+		\item the delay between birth and sexual maturity
+		\item the effects of fluctuating nutrition during pregnancy
+		\item the effects of over-grazing by herbivores
+		\item the natural lifespans of the predator and the prey
+		\end{itemize}
+		
+		In this model, each coyote and each rabbit are entities.  Grass is a resource that gradually renews.  Every mating and every resulting birth are events, governed by the gestation period and litter size of the animal.  When each animal is created, its natural death is added to the queue. (Few rabbits ever made it to their natural death, however.)
 	
 		\section{Tutorial}
 		The tutorial is divided into two portion. One is the basic Lotka-Volterra Model. Another is the Agent Based Simulation Model. Both the tutorials are run on Jupyter Notebook.
@@ -413,19 +425,19 @@ Similarly, we need to write the prey movement. The condition is much easier, if 
 \subsubsection{Step functions}
 We provide step function for each step of the simulation. 
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, frame]{Figures/c9}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/c9}}
 	\caption{Step function}
 \end{figure}
 
 \subsubsection{Putting alltogether}
 Finally, we put all the functions written together. 
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, frame]{Figures/c11}}
+	\frame{\includegraphics [width = \linewidth, frame]{Figures/c11}}
 	\caption{Putting all functions together}
 \end{figure}
 We also provide a interactive user input and button for users to try different value.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, frame]{Figures/c12}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/c12}}
 	\caption{Users interaction}
 \end{figure}
 \newpage
@@ -438,14 +450,14 @@ We also provide a interactive user input and button for users to try different v
 \subsubsection{Embedded version}
 We have one embedded version that could support step function. The red spot is the predator (coyote), while the black spot is the rabbit (preys). Users press init, then step through the simulation.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, height=27 em, frame]{Figures/static_abs}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/static_abs}}
 	\caption{Embedded version}
 	\end{figure}
 \subsubsection{GUI version}
 We used GUI framework available from Sayama.et al \cite{Sayama2013} to develop our model.
 At Jupyter Notebook, when running the simulation, we will have a working GUI. The red spot is the predator (coyote), while the black spot is the rabbit (preys).
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, frame]{Figures/ABS_Start}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/ABS_Start}}
 	\caption{Start of ABS Simulation}
 \end{figure}
 
@@ -453,11 +465,11 @@ At Jupyter Notebook, when running the simulation, we will have a working GUI. Th
 \subsubsection{Continuous run of simulation}
 Pressing run will enable the simulation to occurs, presssing pause will hold the simulation. The begining of the predators and preys are randomly initialized.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, height=27 em, frame]{Figures/ABS_run}}
+	\frame{\includegraphics[width = \linewidth, frame]{Figures/ABS_run}}
 	\caption{Running of ABS Simulation}
 \end{figure}
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth,height=27 em, frame]{Figures/ABS_run_pause}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/ABS_run_pause}}
 	\caption{Pause of ABS Simulation}
 	\end{figure}
 
@@ -465,12 +477,12 @@ Pressing run will enable the simulation to occurs, presssing pause will hold the
 \subsubsection{Stepping of simulation}
 Users can also choose to step through the simulation. We show randomly two screen shots after different steps for the simulation.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, height=27 em,frame]{Figures/ABS_step}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/ABS_step}}
 	\caption{Stepping of Simulation 1}
 \end{figure}
 
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth,height=27 em, frame]{Figures/ABS_25step}}
+	\frame{\includegraphics[width = \linewidth,frame]{Figures/ABS_25step}}
 	\caption{Stepping of Simulation 2}
 \end{figure}
 
@@ -478,23 +490,28 @@ Users can also choose to step through the simulation. We show randomly two scree
 \subsubsection{Parameters setup}
 Users are allowed to control the initial rabbit population, coyote population, rabbit capacity, rabbit reproduction, coyote death rate and birth rate in the Parameters tab.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth, height=25 em, frame]{Figures/ABS_Parameters}}
+	\frame{\includegraphics[scale=0.5]{Figures/ABS_Parameters}}
 	\caption{Parameters setup}
 \end{figure}
 
 \subsubsection{Simulation settings}
 Users are allows to change some of the simulation settings, such as step side and how fast the visualization delay.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth,  height=25 em,frame]{Figures/ABS_settings}}
+	\frame{\includegraphics[scale=0.5]{Figures/ABS_settings}}
 	\caption{Simulation settings}
 \end{figure}
 
 \subsubsection{Information}
 Finally, some additional information.
 \begin{figure}[H]
-	\frame{\includegraphics[width = \linewidth,height=25 em, frame]{Figures/Info}}
+	\frame{\includegraphics[scale=0.5]{Figures/Info}}
 	\caption{Additional Information}
 \end{figure}
+
+\subsection{Event-based Simulation}
+
+
+
 
 
 		\section{Division of Labor}
